@@ -1,0 +1,20 @@
+{
+  "name": "@moomfe/hu-template-compiler",
+  "version": "1.0.0-bata.0",
+  "description": "",
+  "main": "index.js",
+  "keywords": [],
+  "author": "Wei Zhang",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MoomFE/Hu-Template-Compiler.git"
+  },
+  "bugs": {
+    "url": "https://github.com/MoomFE/Hu-Template-Compiler/issues"
+  },
+  "homepage": "https://github.com/MoomFE/Hu-Template-Compiler#readme",
+  "scripts": {
+    
+  }
+}

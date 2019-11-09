@@ -1,0 +1,21 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "src"
+		}
+	],
+	"settings": {
+		"files.exclude": {
+			"LICENSE": true,
+			"package-lock.json": true,
+			".gitignore": true,
+			"src": true,
+			"Hu-Template-Compiler.code-workspace": true
+		},
+		"editor.tabSize": 2,
+		"editor.detectIndentation": false
+	}
+}

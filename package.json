@@ -15,5 +15,7 @@
   },
   "homepage": "https://github.com/MoomFE/Hu-Template-Compiler#readme",
   "scripts": {},
-  "dependencies": {}
+  "dependencies": {
+    "typescript": "^3.7.2"
+  }
 }

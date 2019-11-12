@@ -18,7 +18,7 @@ const minifier = require('@moomfe/hu-template-minifier/rollup');
 ```
 
 
-## Supports:
+## Supports
 - [Hu](https://github.com/MoomFE/Hu)
 - [lit-html](https://github.com/Polymer/lit-html)
 

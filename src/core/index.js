@@ -16,7 +16,7 @@ module.exports = function minifier( code = '', id = '' ){
       const min = minifierHTML( combined );
       const minParts = min.split( placeholder );
 
-      literal.parts.forEach(({ start, end }, index ) => {
+      literal.parts.forEach(({ start, end }, index) => {
         msCode.overwrite( start, end, minParts[ index ] );
       });
     });

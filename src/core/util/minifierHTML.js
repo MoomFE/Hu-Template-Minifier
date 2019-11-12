@@ -14,6 +14,8 @@ module.exports = function minifierHTML( html ){
     // 移除 style 标签的 type 属性
     removeStyleLinkTypeAttributes: true,
     // 移除注释
-    removeComments: true
+    removeComments: true,
+    // 防止转义属性的值
+    preventAttributesEscaping: true
   });
 }

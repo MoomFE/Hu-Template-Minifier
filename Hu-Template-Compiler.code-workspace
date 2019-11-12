@@ -5,6 +5,9 @@
     },
     {
       "path": "src"
+    },
+    {
+      "path": "test"
     }
   ],
   "settings": {
@@ -13,6 +16,7 @@
       "package-lock.json": true,
       ".gitignore": true,
       "src": true,
+      "test": true,
       "node_modules": true,
       "Hu-Template-Compiler.code-workspace": true
     },

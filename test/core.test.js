@@ -1,4 +1,4 @@
-const minifier = require('../src/core/index');
+const minifier = require('../src/index');
 const expect = require('chai').expect;
 
 

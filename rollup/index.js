@@ -1,4 +1,4 @@
-const minifier = require('../core/index.js');
+const minifier = require('../src/index.js');
 
 
 module.exports = function( option = {} ){

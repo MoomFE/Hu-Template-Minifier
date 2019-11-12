@@ -16,6 +16,8 @@
   "homepage": "https://github.com/MoomFE/Hu-Template-Compiler#readme",
   "scripts": {},
   "dependencies": {
+    "html-minifier": "^4.0.0",
+    "magic-string": "^0.25.4",
     "typescript": "^3.7.2"
   }
 }

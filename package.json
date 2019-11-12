@@ -1,6 +1,6 @@
 {
-  "name": "@moomfe/hu-template-compiler",
-  "version": "1.0.0-bata.0",
+  "name": "@moomfe/hu-template-minifier",
+  "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "keywords": [],
@@ -8,12 +8,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MoomFE/Hu-Template-Compiler.git"
+    "url": "git+https://github.com/MoomFE/hu-template-minifier.git"
   },
   "bugs": {
-    "url": "https://github.com/MoomFE/Hu-Template-Compiler/issues"
+    "url": "https://github.com/MoomFE/hu-template-minifier/issues"
   },
-  "homepage": "https://github.com/MoomFE/Hu-Template-Compiler#readme",
+  "homepage": "https://github.com/MoomFE/hu-template-minifier#readme",
   "scripts": {
     "test": "node_modules\\.bin\\mocha test\\*.test.js"
   },

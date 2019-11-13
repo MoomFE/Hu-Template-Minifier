@@ -16,6 +16,7 @@ module.exports = function( userOptions ){
   var filter = createFilter( options.include, options.exclude );
 
   return {
+    name: 'hu-template-minifier',
     transform( code, id ){
       if( !extensions.includes( extname( id ) ) ){
         return;

@@ -98,7 +98,7 @@ describe( 'minifier.rollup.plugin', function(){
     ).is.undefined;
   });
 
-  it( '使用 include 选项包含需要的文件, 可以使用 * 来匹配', () => {
+  it( '使用 include 选项包含需要的文件, 可以使用 minimatch 格式进行匹配', () => {
     // string: 1
     {
       const plugin = minifier({
@@ -177,7 +177,165 @@ describe( 'minifier.rollup.plugin', function(){
     }
   });
 
-  it( '使用 include 选项包含需要的文件, 可以使用正则来匹配', () => {
+  it( '使用 include 选项包含需要的文件, 可以使用 minimatch 格式进行匹配, 单层目录', () => {
+    // string: 1
+    {
+      const plugin = minifier({
+        include: 'components/*/*.js'
+      });
+
+      expect(
+        plugin.transform( origin, resolve( cwd, 'components/xxx/index1.js' ) )
+      ).is.equals( result );
+
+      expect(
+        plugin.transform( origin, resolve( cwd, 'components/xxx/yyy/index2.js' ) )
+      ).is.undefined;
+
+      expect(
+        plugin.transform( origin, resolve( cwd, 'components/xxx/other.js' ) )
+      ).is.equals( result );
+    }
+    // string: 2
+    {
+      const plugin = minifier({
+        include: 'components/*/index*.js'
+      });
+
+      expect(
+        plugin.transform( origin, resolve( cwd, 'components/xxx/index1.js' ) )
+      ).is.equals( result );
+
+      expect(
+        plugin.transform( origin, resolve( cwd, 'components/xxx/yyy/index2.js' ) )
+      ).is.undefined;
+
+      expect(
+        plugin.transform( origin, resolve( cwd, 'components/xxx/other.js' ) )
+      ).is.undefined;
+    }
+    // array: 1
+    {
+      const plugin = minifier({
+        include: [
+          'components/*/*.js'
+        ]
+      });
+
+      expect(
+        plugin.transform( origin, resolve( cwd, 'components/xxx/index1.js' ) )
+      ).is.equals( result );
+
+      expect(
+        plugin.transform( origin, resolve( cwd, 'components/xxx/yyy/index2.js' ) )
+      ).is.undefined;
+
+      expect(
+        plugin.transform( origin, resolve( cwd, 'components/xxx/other.js' ) )
+      ).is.equals( result );
+    }
+    // array: 2
+    {
+      const plugin = minifier({
+        include: [
+          'components/*/index*.js'
+        ]
+      });
+
+      expect(
+        plugin.transform( origin, resolve( cwd, 'components/xxx/index1.js' ) )
+      ).is.equals( result );
+
+      expect(
+        plugin.transform( origin, resolve( cwd, 'components/xxx/yyy/index2.js' ) )
+      ).is.undefined;
+
+      expect(
+        plugin.transform( origin, resolve( cwd, 'components/xxx/other.js' ) )
+      ).is.undefined;
+    }
+  });
+  
+  it( '使用 include 选项包含需要的文件, 可以使用 minimatch 格式进行匹配, 多层目录', () => {
+    // string: 1
+    {
+      const plugin = minifier({
+        include: 'components/**/*.js'
+      });
+
+      expect(
+        plugin.transform( origin, resolve( cwd, 'components/xxx/index1.js' ) )
+      ).is.equals( result );
+
+      expect(
+        plugin.transform( origin, resolve( cwd, 'components/xxx/yyy/index2.js' ) )
+      ).is.equals( result );
+
+      expect(
+        plugin.transform( origin, resolve( cwd, 'components/xxx/other.js' ) )
+      ).is.equals( result );
+    }
+    // string: 2
+    {
+      const plugin = minifier({
+        include: 'components/**/index*.js'
+      });
+
+      expect(
+        plugin.transform( origin, resolve( cwd, 'components/xxx/index1.js' ) )
+      ).is.equals( result );
+
+      expect(
+        plugin.transform( origin, resolve( cwd, 'components/xxx/yyy/index2.js' ) )
+      ).is.equals( result );
+
+      expect(
+        plugin.transform( origin, resolve( cwd, 'components/xxx/other.js' ) )
+      ).is.undefined;
+    }
+    // array: 1
+    {
+      const plugin = minifier({
+        include: [
+          'components/**/*.js'
+        ]
+      });
+
+      expect(
+        plugin.transform( origin, resolve( cwd, 'components/xxx/index1.js' ) )
+      ).is.equals( result );
+
+      expect(
+        plugin.transform( origin, resolve( cwd, 'components/xxx/yyy/index2.js' ) )
+      ).is.equals( result );
+
+      expect(
+        plugin.transform( origin, resolve( cwd, 'components/xxx/other.js' ) )
+      ).is.equals( result );
+    }
+    // array: 2
+    {
+      const plugin = minifier({
+        include: [
+          'components/**/index*.js'
+        ]
+      });
+
+      expect(
+        plugin.transform( origin, resolve( cwd, 'components/xxx/index1.js' ) )
+      ).is.equals( result );
+
+      expect(
+        plugin.transform( origin, resolve( cwd, 'components/xxx/yyy/index2.js' ) )
+      ).is.equals( result );
+
+      expect(
+        plugin.transform( origin, resolve( cwd, 'components/xxx/other.js' ) )
+      ).is.undefined;
+    }
+  });
+
+  it( '使用 include 选项包含需要的文件, 可以使用正则进行匹配', () => {
     // string: 1
     {
       const plugin = minifier({
@@ -312,7 +470,7 @@ describe( 'minifier.rollup.plugin', function(){
     ).is.equals( result );
   });
 
-  it( '使用 exclude 选项排除不需要进行压缩的文件, 可以使用 * 来匹配', () => {
+  it( '使用 exclude 选项排除不需要进行压缩的文件, 可以使用 minimatch 格式进行匹配', () => {
     // string: 1
     {
       const plugin = minifier({
@@ -391,7 +549,165 @@ describe( 'minifier.rollup.plugin', function(){
     }
   });
 
-  it( '使用 exclude 选项排除不需要进行压缩的文件, 可以使用正则来匹配', () => {
+  it( '使用 exclude 选项排除不需要进行压缩的文件, 可以使用 minimatch 格式进行匹配, 单层目录', () => {
+    // string: 1
+    {
+      const plugin = minifier({
+        exclude: 'components/*/*.js'
+      });
+
+      expect(
+        plugin.transform( origin, resolve( cwd, 'components/xxx/index1.js' ) )
+      ).is.undefined;
+
+      expect(
+        plugin.transform( origin, resolve( cwd, 'components/xxx/yyy/index2.js' ) )
+      ).is.equals( result );
+
+      expect(
+        plugin.transform( origin, resolve( cwd, 'components/xxx/other.js' ) )
+      ).is.undefined;
+    }
+    // string: 2
+    {
+      const plugin = minifier({
+        exclude: 'components/*/index*.js'
+      });
+
+      expect(
+        plugin.transform( origin, resolve( cwd, 'components/xxx/index1.js' ) )
+      ).is.undefined;
+
+      expect(
+        plugin.transform( origin, resolve( cwd, 'components/xxx/yyy/index2.js' ) )
+      ).is.equals( result );
+
+      expect(
+        plugin.transform( origin, resolve( cwd, 'components/xxx/other.js' ) )
+      ).is.equals( result );
+    }
+    // array: 1
+    {
+      const plugin = minifier({
+        exclude: [
+          'components/*/*.js'
+        ]
+      });
+
+      expect(
+        plugin.transform( origin, resolve( cwd, 'components/xxx/index1.js' ) )
+      ).is.undefined;
+
+      expect(
+        plugin.transform( origin, resolve( cwd, 'components/xxx/yyy/index2.js' ) )
+      ).is.equals( result );
+
+      expect(
+        plugin.transform( origin, resolve( cwd, 'components/xxx/other.js' ) )
+      ).is.undefined;
+    }
+    // array: 2
+    {
+      const plugin = minifier({
+        exclude: [
+          'components/*/index*.js'
+        ]
+      });
+
+      expect(
+        plugin.transform( origin, resolve( cwd, 'components/xxx/index1.js' ) )
+      ).is.undefined;
+
+      expect(
+        plugin.transform( origin, resolve( cwd, 'components/xxx/yyy/index2.js' ) )
+      ).is.equals( result );
+
+      expect(
+        plugin.transform( origin, resolve( cwd, 'components/xxx/other.js' ) )
+      ).is.equals( result );
+    }
+  });
+  
+  it( '使用 exclude 选项包含需要的文件, 可以使用 minimatch 格式进行匹配, 多层目录', () => {
+    // string: 1
+    {
+      const plugin = minifier({
+        exclude: 'components/**/*.js'
+      });
+
+      expect(
+        plugin.transform( origin, resolve( cwd, 'components/xxx/index1.js' ) )
+      ).is.undefined;
+
+      expect(
+        plugin.transform( origin, resolve( cwd, 'components/xxx/yyy/index2.js' ) )
+      ).is.undefined;
+
+      expect(
+        plugin.transform( origin, resolve( cwd, 'components/xxx/other.js' ) )
+      ).is.undefined;
+    }
+    // string: 2
+    {
+      const plugin = minifier({
+        exclude: 'components/**/index*.js'
+      });
+
+      expect(
+        plugin.transform( origin, resolve( cwd, 'components/xxx/index1.js' ) )
+      ).is.undefined;
+
+      expect(
+        plugin.transform( origin, resolve( cwd, 'components/xxx/yyy/index2.js' ) )
+      ).is.undefined;
+
+      expect(
+        plugin.transform( origin, resolve( cwd, 'components/xxx/other.js' ) )
+      ).is.equals( result );
+    }
+    // array: 1
+    {
+      const plugin = minifier({
+        exclude: [
+          'components/**/*.js'
+        ]
+      });
+
+      expect(
+        plugin.transform( origin, resolve( cwd, 'components/xxx/index1.js' ) )
+      ).is.undefined;
+
+      expect(
+        plugin.transform( origin, resolve( cwd, 'components/xxx/yyy/index2.js' ) )
+      ).is.undefined;
+
+      expect(
+        plugin.transform( origin, resolve( cwd, 'components/xxx/other.js' ) )
+      ).is.undefined;
+    }
+    // array: 2
+    {
+      const plugin = minifier({
+        exclude: [
+          'components/**/index*.js'
+        ]
+      });
+
+      expect(
+        plugin.transform( origin, resolve( cwd, 'components/xxx/index1.js' ) )
+      ).is.undefined;
+
+      expect(
+        plugin.transform( origin, resolve( cwd, 'components/xxx/yyy/index2.js' ) )
+      ).is.undefined;
+
+      expect(
+        plugin.transform( origin, resolve( cwd, 'components/xxx/other.js' ) )
+      ).is.equals( result );
+    }
+  });
+
+  it( '使用 exclude 选项排除不需要进行压缩的文件, 可以使用正则进行匹配', () => {
     // string: 1
     {
       const plugin = minifier({

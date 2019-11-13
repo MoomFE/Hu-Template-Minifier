@@ -66,6 +66,8 @@ rollup({
 ## Supports
 - [Hu](https://github.com/MoomFE/Hu)
 - [lit-html](https://github.com/Polymer/lit-html)
+- [hyperHTML](https://github.com/WebReflection/hyperhtml)
+- [lighterhtml](https://github.com/WebReflection/lighterhtml)
 
 
 ## Transplant From

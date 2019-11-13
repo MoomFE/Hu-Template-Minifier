@@ -628,7 +628,7 @@ describe( 'minifier.rollup.plugin', function(){
     }
   });
   
-  it( '使用 exclude 选项包含需要的文件, 可以使用 minimatch 格式进行匹配, 多层目录', () => {
+  it( '使用 exclude 选项排除不需要进行压缩的文件, 可以使用 minimatch 格式进行匹配, 多层目录', () => {
     // string: 1
     {
       const plugin = minifier({

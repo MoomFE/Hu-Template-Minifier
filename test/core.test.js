@@ -1,11 +1,11 @@
-const minifier = require('../src/index');
+const minifier = require('../src/index.js');
 const expect = require('chai').expect;
 
 
 describe( 'minifier.core', function(){
 
   it( '对模板进行压缩', () => {
-    const origin = "html` <div>123</div> `";
+    const origin = "html`  <div>123</div>  `";
     const result = "html`<div>123</div>`"
 
     expect(

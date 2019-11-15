@@ -14,14 +14,6 @@ npm install @moomfe/hu-template-minifier
 
 ## Usage
 ```js
-// 使用 minifier 方法
-const minifier = require('@moomfe/hu-template-minifier');
-
-minifier( code );
-```
-
-
-```js
 // 使用 minifier 的 rollup 插件
 const minifier = require('@moomfe/hu-template-minifier/rollup');
 

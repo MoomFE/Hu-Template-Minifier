@@ -74,7 +74,13 @@ rollup({
 
   // 需要从已包含的文件中排除的文件
   // 使用的格式与 include 选项一致, 不再进行举例
-  exclude: undefined // 默认值
+  exclude: undefined, // 默认值
+
+  // 保留一个空格
+  conservativeCollapse: true
+
+  // 移除注释
+  removeComments: true
 }
 ```
 

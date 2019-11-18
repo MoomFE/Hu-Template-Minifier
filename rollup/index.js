@@ -6,7 +6,7 @@ const { createFilter } = require('rollup-pluginutils');
 
 
 module.exports = function( userOptions ){
-  const options = Object.$assign( {}, defaultOptions, userOptions );
+  const options = Object.$assign( null, defaultOptions, userOptions );
   const extensions = options.extensions || [];
 
   if( extensions.length === 0 ){
@@ -25,7 +25,7 @@ module.exports = function( userOptions ){
         return;
       }
 
-      return minifier( code, id );
+      return minifier( code, id, options );
     }
   };
 }

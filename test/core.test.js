@@ -22,7 +22,7 @@ describe( 'minifier.core', function(){
       \`
     `;
     const result = `
-      html\`<div><span>123</span></div>\`
+      html\`<div> <span>123</span> </div>\`
     `
 
     expect(
@@ -66,7 +66,7 @@ describe( 'minifier.core', function(){
       \`
     `;
     const result = `
-      html\`<div attr="\${ \` <div>123</div> \` }">\${ \` <div>123</div> \` }</div>\`
+      html\`<div attr="\${ \` <div>123</div> \` }"> \${ \` <div>123</div> \` } </div>\`
     `;
 
     expect(

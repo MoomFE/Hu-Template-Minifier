@@ -8,12 +8,13 @@ const defaultOptions = {
   // 移除注释
   removeComments: true
 };
+const defaultOptionsKeys = Object.keys( defaultOptions );
 
 
 module.exports = function minifierHTML( html, userOptions ){
-  const options = Object.$assign( null, defaultOptions, {}.$get.call(
+  const options = Object.$assign( null, defaultOptions, {}.$get.apply(
     userOptions,
-    ...Object.keys( defaultOptions )
+    defaultOptionsKeys
   ));
 
   const compressedHTML = htmlMinifier.minify( html, {

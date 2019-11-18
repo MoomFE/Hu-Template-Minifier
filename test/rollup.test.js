@@ -805,4 +805,30 @@ describe( 'minifier.rollup.plugin', function(){
     ).is.undefined;
   });
 
+
+  it( '会将插件选项传入核心方法内', () => {
+    const origin = "html` <!-- 123 --> <div>123</div>  `";
+    const result = "html`<div>123</div>`";
+    const result2 = "html`<!-- 123 --> <div>123</div>`";
+
+    // 不传值情况
+    {
+      const plugin = minifier();
+
+      expect(
+        plugin.transform( origin, 'index.js' )
+      ).is.equals( result );
+    }
+    // 传值情况对比
+    {
+      const plugin = minifier({
+        removeComments: false
+      });
+
+      expect(
+        plugin.transform( origin, 'index.js' )
+      ).is.equals( result2 );
+    }
+  });
+
 });

@@ -77,7 +77,7 @@ rollup({
   exclude: undefined, // 默认值
 
   // 保留一个空格
-  conservativeCollapse: true
+  conservativeCollapse: true,
 
   // 移除注释
   removeComments: true

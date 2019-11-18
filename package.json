@@ -3,7 +3,14 @@
   "version": "1.1.2",
   "description": "",
   "main": "src/index.js",
-  "keywords": [],
+  "keywords": [
+    "template literals",
+    "minify",
+    "hu",
+    "lit-html",
+    "hyperhtml",
+    "lighterhtml"
+  ],
   "author": "Wei Zhang",
   "license": "MIT",
   "repository": {

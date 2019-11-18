@@ -1,3 +1,5 @@
+# 1.2.0
+  - 📅 2019-11-18
   - 🌟 新增 `conservativeCollapse` 配置项
   - 🌟 新增 `removeComments` 配置项
   - ⚠️ 默认在压缩 HTML 时将多个空格压缩为一个而不是全部删除, 但是首尾空格会被删除

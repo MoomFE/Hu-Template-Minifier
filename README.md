@@ -1,9 +1,33 @@
 # Hu-Template-Minifier
-该类库将使用了 [模板字符串 - 标签 ( Template Strings )](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#Tagged_templates) 功能实现模板定义的类库中的 HTML 代码进行压缩.
+该类库将使用了 [模板字符串 - 标签 ( Template literals )](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#Tagged_templates) 功能实现模板定义的类库中的 HTML 代码进行压缩.
 
 
 <br>
 <br>
+
+
+## Overview
+```js
+html`
+  <div title=${ 'title' } class="a ${ b } c ${ d }">
+    <div>...</div>
+    ${
+      html`
+        <div>
+          <span>Something ...</span>
+        </div>
+      `
+    }
+    <div>...</div>
+  </div>
+`
+
+// ↓↓↓
+
+html`<div title=${ 'title' } class="a ${ b } c ${ d }"> <div>...</div> ${
+      html`<div> <span>Something ...</span> </div>`
+    } <div>...</div> </div>`
+```
 
 
 ## Installation

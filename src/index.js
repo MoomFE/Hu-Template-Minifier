@@ -21,7 +21,9 @@ module.exports = function minifier( userCode = '', id = '', userOptions ){
       const minParts = min.split( placeholder );
 
       literal.parts.forEach(({ start, end }, index) => {
-        msCode.overwrite( start, end, minParts[ index ] );
+        if( end > start ){
+          msCode.overwrite( start, end, minParts[ index ] );
+        }
       });
     });
 

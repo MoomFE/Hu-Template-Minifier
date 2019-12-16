@@ -3,14 +3,16 @@ const MagicString = require('magic-string');
 const getLiterals = require('./util/getLiterals.js');
 const getPlaceholder = require('./util/getPlaceholder.js');
 const minifierHTML = require('./util/minifierHTML.js');
+const processCode = require('./util/processCode.js');
 
 
-module.exports = function minifier( code = '', id = '', userOptions ){
+module.exports = function minifier( userCode = '', id = '', userOptions ){
+  const options = Object.$assign( null, userOptions );
+  const code = processCode( userCode, id, options );
   const literals = getLiterals( code, id );
 
-  if( literals ){
+  if( literals.length ){
     const msCode = new MagicString( code );
-    const options = Object.$assign( null, userOptions );
 
     literals.forEach( literal => {
       const placeholder = getPlaceholder( literal.parts );

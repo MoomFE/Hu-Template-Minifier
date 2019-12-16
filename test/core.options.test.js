@@ -16,7 +16,7 @@ describe( 'minifier.core.options', function(){
       `;
       const result = `
         html\`<div> <span>123</span> </div>\`
-      `
+      `;
 
       expect(
         minifier( origin )
@@ -33,7 +33,7 @@ describe( 'minifier.core.options', function(){
       `;
       const result = `
         html\`<div> <span>123</span> </div>\`
-      `
+      `;
 
       expect(
         minifier( origin, '', {
@@ -53,7 +53,7 @@ describe( 'minifier.core.options', function(){
     `;
     const result = `
       html\`<div><span>123</span></div>\`
-    `
+    `;
 
     expect(
       minifier( origin, '', {
@@ -62,7 +62,7 @@ describe( 'minifier.core.options', function(){
     ).is.equals( result );
   });
 
-  it( '选项 removeComments 默认为 true, 将默认移除文档注释', () => {
+  it( '选项 removeComments 默认为 false, 将默认保留文档注释', () => {
     // 不传值默认情况
     {
       const origin = `
@@ -74,14 +74,14 @@ describe( 'minifier.core.options', function(){
         \`
       `;
       const result = `
-        html\`<div> <span>123</span> </div>\`
-      `
+        html\`<div> <!-- 123123123 --> <span>123</span> </div>\`
+      `;
 
       expect(
-        minifier( origin )
+        minifier( origin, '' )
       ).is.equals( result );
     }
-    // 传值为 true
+    // // 传值为 false
     {
       const origin = `
         html\`
@@ -92,18 +92,18 @@ describe( 'minifier.core.options', function(){
         \`
       `;
       const result = `
-        html\`<div> <span>123</span> </div>\`
-      `
+        html\`<div> <!-- 123123123 --> <span>123</span> </div>\`
+      `;
 
       expect(
         minifier( origin, '', {
-          removeComments: true
+          removeComments: false
         })
       ).is.equals( result );
     }
   });
 
-  it( '选项 removeComments 为 false 时, 将保留文档注释', () => {
+  it( '选项 removeComments 为 true 时, 将移除文档注释', () => {
     const origin = `
       html\`
         <div>
@@ -113,12 +113,12 @@ describe( 'minifier.core.options', function(){
       \`
     `;
     const result = `
-      html\`<div> <!-- 123123123 --> <span>123</span> </div>\`
-    `
+      html\`<div> <span>123</span> </div>\`
+    `;
 
     expect(
       minifier( origin, '', {
-        removeComments: false
+        removeComments: true
       })
     ).is.equals( result );
   });

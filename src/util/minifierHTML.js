@@ -6,7 +6,7 @@ const defaultOptions = {
   // 保留一个空格
   conservativeCollapse: true,
   // 移除注释
-  removeComments: true
+  removeComments: false
 };
 const defaultOptionsKeys = Object.keys( defaultOptions );
 

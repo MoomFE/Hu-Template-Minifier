@@ -80,7 +80,7 @@ rollup({
   conservativeCollapse: true,
 
   // 移除注释
-  removeComments: true
+  removeComments: false
 }
 ```
 

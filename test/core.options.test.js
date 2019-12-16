@@ -123,4 +123,301 @@ describe( 'minifier.core.options', function(){
     ).is.equals( result );
   });
 
+  it( '选项 removeComments 为 true 时, 单个文档注释', () => {
+    const origin = `
+      html\`
+        <!---->
+      \`
+    `;
+    const result = `
+      html\`\`
+    `;
+
+    expect(
+      minifier( origin, '', {
+        removeComments: true
+      })
+    ).is.equals( result );
+  });
+
+  it( '选项 removeComments 为 true 时, 单个文档注释与文档注释前面的插值', () => {
+    const origin = `
+      html\`
+        \${ null }
+        <!---->
+      \`
+    `;
+    const result = `
+      html\`\${ null }\`
+    `;
+
+    expect(
+      minifier( origin, '', {
+        removeComments: true
+      })
+    ).is.equals( result );
+  });
+
+  it( '选项 removeComments 为 true 时, 单个文档注释与文档注释后面的插值', () => {
+    const origin = `
+      html\`
+        <!---->
+        \${ null }
+      \`
+    `;
+    const result = `
+      html\`\${ null }\`
+    `;
+
+    expect(
+      minifier( origin, '', {
+        removeComments: true
+      })
+    ).is.equals( result );
+  });
+
+  it( '选项 removeComments 为 true 时, 单个文档注释及文档注释内部的插值及文档注释前面的插值', () => {
+    // 1
+    {
+      const origin = `
+        html\`
+          \${ 1 }
+          <!--\${ 2 }-->
+        \`
+      `;
+      const result = `
+        html\`\${ 1 }\`
+      `;
+
+      expect(
+        minifier( origin, '', {
+          removeComments: true
+        })
+      ).is.equals( result );
+    }
+    // 2
+    {
+      const origin = `
+        html\`
+          \${ 1 }
+          <!-- \${ 2 } -->
+        \`
+      `;
+      const result = `
+        html\`\${ 1 }\`
+      `;
+
+      expect(
+        minifier( origin, '', {
+          removeComments: true
+        })
+      ).is.equals( result );
+    }
+  });
+
+  it( '选项 removeComments 为 true 时, 单个文档注释及文档注释内部的插值及文档注释后面的插值', () => {
+    // 1
+    {
+      const origin = `
+        html\`
+          <!--\${ 1 }-->
+          \${ 2 }
+        \`
+      `;
+      const result = `
+        html\`\${ 2 }\`
+      `;
+
+      expect(
+        minifier( origin, '', {
+          removeComments: true
+        })
+      ).is.equals( result );
+    }
+    // 2
+    {
+      const origin = `
+        html\`
+          <!-- \${ 1 } -->
+          \${ 2 }
+        \`
+      `;
+      const result = `
+        html\`\${ 2 }\`
+      `;
+
+      expect(
+        minifier( origin, '', {
+          removeComments: true
+        })
+      ).is.equals( result );
+    }
+  });
+
+  it( '选项 removeComments 为 true 时, 多个文档注释', () => {
+    const origin = `
+      html\`
+        <!---->
+        <!----><!---->
+        <!---->
+      \`
+    `;
+    const result = `
+      html\`\`
+    `;
+
+    expect(
+      minifier( origin, '', {
+        removeComments: true
+      })
+    ).is.equals( result );
+  });
+
+  it( '选项 removeComments 为 true 时, 多个文档注释与文档注释前面的插值', () => {
+    const origin = `
+      html\`
+        \${ null }
+        <!---->
+        <!----><!---->
+        <!---->
+      \`
+    `;
+    const result = `
+      html\`\${ null }\`
+    `;
+
+    expect(
+      minifier( origin, '', {
+        removeComments: true
+      })
+    ).is.equals( result );
+  });
+
+  it( '选项 removeComments 为 true 时, 多个文档注释与文档注释后面的插值', () => {
+    const origin = `
+      html\`
+        <!---->
+        <!----><!---->
+        <!---->
+        \${ null }
+      \`
+    `;
+    const result = `
+      html\`\${ null }\`
+    `;
+
+    expect(
+      minifier( origin, '', {
+        removeComments: true
+      })
+    ).is.equals( result );
+  });
+
+  it( '选项 removeComments 为 true 时, 多个文档注释及文档注释内部的插值及文档注释前面的插值', () => {
+    // 1
+    {
+      const origin = `
+        html\`
+          \${ 1 }
+          <!--\${ 2 }-->
+          <!--\${ 3 }--><!----><!--\${ 4 }zw\${ 4 }-->
+          <!--\${ 5 }-->
+        \`
+      `;
+      const result = `
+        html\`\${ 1 }\`
+      `;
+
+      expect(
+        minifier( origin, '', {
+          removeComments: true
+        })
+      ).is.equals( result );
+    }
+    // 2
+    {
+      const origin = `
+        html\`
+          \${ 1 }
+          <!-- \${ 2 } -->
+          <!-- \${ 3 } --><!----><!-- \${ 4 }zw\${ 4 } -->
+          <!-- \${ 5 } -->
+        \`
+      `;
+      const result = `
+        html\`\${ 1 }\`
+      `;
+
+      expect(
+        minifier( origin, '', {
+          removeComments: true
+        })
+      ).is.equals( result );
+    }
+  });
+
+  it( '选项 removeComments 为 true 时, 多个文档注释及文档注释内部的插值及文档注释前面的插值', () => {
+    // 1
+    {
+      const origin = `
+        html\`
+          <!--\${ 1 }-->
+          <!--\${ 2 }--><!----><!--\${ 3 }zw\${ 3 }-->
+          <!--\${ 4 }-->
+          \${ 5 }
+        \`
+      `;
+      const result = `
+        html\`\${ 5 }\`
+      `;
+
+      expect(
+        minifier( origin, '', {
+          removeComments: true
+        })
+      ).is.equals( result );
+    }
+    // 2
+    {
+      const origin = `
+        html\`
+          <!-- \${ 1 } -->
+          <!-- \${ 2 } --><!----><!-- \${ 3 }zw\${ 3 } -->
+          <!-- \${ 4 } -->
+          \${ 5 }
+        \`
+      `;
+      const result = `
+        html\`\${ 5 }\`
+      `;
+
+      expect(
+        minifier( origin, '', {
+          removeComments: true
+        })
+      ).is.equals( result );
+    }
+  });
+
+  it( '选项 removeComments 为 true 时, 多个文档注释及文档注释内部的插值及普通插值', () => {
+    const origin = `
+      html\`
+        \${ 1 }
+        <!--\${ 2 }-->
+        <!--\${ 3 }-->\${ 4 }<!----><!--\${ 5 }zw\${ 5 }-->
+        <!--\${ 6 }-->
+        \${ 7 }
+      \`
+    `;
+    const result = `
+      html\`\${ 1 } \${ 4 } \${ 7 }\`
+    `;
+
+    expect(
+      minifier( origin, '', {
+        removeComments: true
+      })
+    ).is.equals( result );
+  });
+
 });

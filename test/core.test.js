@@ -30,6 +30,19 @@ describe( 'minifier.core', function(){
     ).is.equals( result );
   });
 
+  it( '对纯插值绑定的模板进行压缩', () => {
+    const origin = `
+      html\`\${ 123 }\`
+    `;
+    const result = `
+      html\`\${ 123 }\`
+    `;
+
+    expect(
+      minifier( origin )
+    ).is.equals( result );
+  });
+
   it( '对使用了插值绑定的模板进行压缩', () => {
     const origin = `
       html\`
